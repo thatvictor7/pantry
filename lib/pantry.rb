@@ -3,6 +3,7 @@ class Pantry
   attr_reader :stock
   def initialize
     @stocking = {}
+    @additional = {}
 
   end
 
@@ -11,11 +12,21 @@ class Pantry
   end
 
   def stock_check(item)
-    @stocking[item]
+     @stocking[item].to_i
+
   end
 
+  # def restock(item, amount)
+  #   @stocking[item] = amount
+  # end
   def restock(item, amount)
-    @stocking[item] = amount
+    @additional[item] = amount
+    @stocking.merge(@additional) do |key, oldval, newval|
+      newval + oldval
+    end
+    @additional
   end
+
+
 
 end
