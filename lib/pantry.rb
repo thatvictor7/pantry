@@ -1,9 +1,9 @@
 require 'pry'
 class Pantry
-  attr_reader :stock
+  # attr_reader :stock
   def initialize
-    @stocking = {}
-    @additional = {}
+     @stocking   = {}
+     @additional = {}
 
   end
 
@@ -12,7 +12,7 @@ class Pantry
   end
 
   def stock_check(item)
-     @stocking[item].to_i
+     @additional[item].to_i
 
   end
 
@@ -21,10 +21,9 @@ class Pantry
   # end
   def restock(item, amount)
     @additional[item] = amount
-    @stocking.merge(@additional) do |key, oldval, newval|
+    @additional.merge!(@stocking) do |key, oldval, newval|
       newval + oldval
     end
-    @additional
   end
 
 
